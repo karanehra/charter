@@ -1,0 +1,59 @@
+{
+  "name": "charter",
+  "version": "1.0.0",
+  "description": "Flow charting tool",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode development --env.NODE_ENV=development",
+    "buildprod": "webpack --mode production --env.NODE_ENV=production",
+    "start": "webpack-dev-server --watch --mode development --env.NODE_ENV=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karanehra/charter.git"
+  },
+  "author": {
+    "name": "Karan Nehra",
+    "email": "karanehra@gmail.com",
+    "url": "https://github.com/karanehra"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karanehra/charter/issues"
+  },
+  "homepage": "https://github.com/karanehra/charter#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.3.3",
+    "axios": "^0.19.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.0.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "brotli-webpack-plugin": "^1.1.0",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.5.0",
+    "eslint-plugin-react": "^7.14.3",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "sass-loader": "^7.3.1",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
