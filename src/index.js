@@ -1,11 +1,17 @@
 import ReactDOM from "react-dom";
 import React from "react";
-import "./styles/index.scss";
 import Charter from "./components/app";
+import store from "./redux/store";
+import { Provider } from "react-redux";
+import "./styles/index.scss";
+
+store.subscribe(() => {
+  localStorage.setItem("charterStore", JSON.stringify(store.getState()));
+});
 
 ReactDOM.render(
-  <div>
+  <Provider store={store}>
     <Charter />
-  </div>,
+  </Provider>,
   document.getElementById("root")
 );
