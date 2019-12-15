@@ -1,0 +1,17 @@
+@import "../../styles/flex.scss";
+
+.header {
+  @include horizontal-center-flex;
+  padding: 0 20px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  height: 50px;
+
+  .brand {
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-weight: bold;
+  }
+}
