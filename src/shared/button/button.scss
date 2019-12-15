@@ -1,0 +1,41 @@
+@import "../../styles/theme.scss";
+
+.button {
+  outline: none;
+  border-radius: 5px;
+  height: 30px;
+  min-width: 60px;
+  margin: 0 10px;
+
+  &.primary {
+    background-color: $themePrimaryMain;
+    border: 1px solid $themePrimaryMain;
+    color: $themePrimaryText;
+
+    &:hover {
+      background-color: $themePrimaryLighter;
+      border: 1px solid $themePrimaryLighter;
+    }
+
+    &:disabled {
+      background-color: $themePrimaryDarker;
+      border: 1px solid $themePrimaryDarker;
+    }
+  }
+
+  &.secondary {
+    background-color: $themeSecondaryMain;
+    border: 1px solid $themeSecondaryMain;
+    color: $themePrimaryText;
+
+    &:hover {
+      background-color: $themeSecondaryLighter;
+      border: 1px solid $themeSecondaryLighter;
+    }
+
+    &:disabled {
+      background-color: $themeSecondaryDarker;
+      border: 1px solid $themeSecondaryDarker;
+    }
+  }
+}
