@@ -1,11 +1,12 @@
 @import "../../styles/flex.scss";
+@import "../../styles/theme.scss";
 
 .header {
   @include horizontal-center-flex;
   padding: 0 20px;
   width: 100%;
-  background-color: black;
-  color: white;
+  background-color: $themePrimaryMain;
+  color: $themePrimaryText;
   height: 50px;
 
   .brand {
