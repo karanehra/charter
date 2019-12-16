@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-const WorkNode = props => {
+const TreeNode = props => {
   let selectedNode = null;
   let dragStartX = "";
   let dragStartY = "";
@@ -46,4 +46,4 @@ const WorkNode = props => {
   );
 };
 
-export default WorkNode;
+export default TreeNode;

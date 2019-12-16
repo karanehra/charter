@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export interface WorkNodeProps {
+export interface TreeNodeProps {
   cx: number;
   cy: number;
   r: number;
@@ -9,5 +9,5 @@ export interface WorkNodeProps {
   selected?: boolean;
 }
 
-declare const WorkNode: React.FC<WorkNodeProps>;
-export default WorkNode;
+declare const TreeNode: React.FC<TreeNodeProps>;
+export default TreeNode;

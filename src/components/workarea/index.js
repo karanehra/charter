@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "./workarea.scss";
-import WorkNode from "../../shared/node/";
+import TreeNode from "../../shared/node/";
 
 const WorkArea = () => {
   const [workSpaceHeight, changeHeight] = useState(window.innerHeight - 50);
@@ -18,11 +18,11 @@ const WorkArea = () => {
       <svg width={workSpaceWidth} height={workSpaceHeight} className="workarea">
         {nodes.length > 0 &&
           nodes.map((node, i) => (
-            <WorkNode
+            <TreeNode
               key={i}
               cx={workSpaceWidth / 2}
               cy={workSpaceHeight / 2}
-              r={20}
+              r={30}
             />
           ))}
       </svg>
