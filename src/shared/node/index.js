@@ -32,6 +32,7 @@ const TreeNode = props => {
 
   return (
     <circle
+      className="tree-node"
       onMouseDown={onClickDown}
       onMouseMove={onClickDrag}
       onMouseUp={onClickUp}
