@@ -38,7 +38,7 @@ const TreeNode = props => {
   const onClickUp = () => {
     let newCx = selectedNode.getAttribute("cx");
     let newCy = selectedNode.getAttribute("cy");
-    let payload = { cx: newCx, cy: newCy, id: nodeId };
+    let payload = { cx: Number(newCx), cy: Number(newCy), id: nodeId };
     dispatch(modifyNodeAction(payload));
     selectedNode = null;
   };
