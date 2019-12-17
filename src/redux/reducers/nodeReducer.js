@@ -36,7 +36,8 @@ const rootReducer = (state = initialState, action) => {
       nodes = nodes.filter(node => node.id !== payload);
       return {
         ...state,
-        nodes
+        nodes,
+        activeNodeID: null
       };
     case MODIFY_NODE:
       return {

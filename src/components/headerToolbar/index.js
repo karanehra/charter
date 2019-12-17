@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import OutlinedTextInput from "../../shared/input";
 import Button from "../../shared/button";
-import { useDispatch, useSelector } from "react-redux";
 import { addNodeAction } from "../../redux/actions/nodeActions";
 import { getUUID } from "../../utils/helpers";
 import ActiveNodeToolbar from "../activeNodeToolbar";

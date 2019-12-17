@@ -1,7 +1,6 @@
 import * as React from "react";
 
 export interface ButtonProps {
-  placeholder?: string;
   color?: "primary" | "secondary";
   name?: string;
   onClick?: Function;

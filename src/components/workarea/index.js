@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./workarea.scss";
 import TreeNode from "../../shared/node/";
 import { setActiveNodeAction } from "../../redux/actions/nodeActions";
+import "./workarea.scss";
 
 const WorkArea = () => {
   const [workSpaceHeight, changeHeight] = useState(window.innerHeight - 50);
