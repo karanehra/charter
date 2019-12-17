@@ -1,4 +1,9 @@
-import { ADD_NODE, REMOVE_NODE, MODIFY_NODE } from "../../constants/actions";
+import {
+  ADD_NODE,
+  REMOVE_NODE,
+  MODIFY_NODE,
+  SET_ACTIVE_NODE
+} from "../../constants/actions";
 
 /**
  * Redux Action.
@@ -36,4 +41,14 @@ export const removeNodeAction = nodeID => ({
 export const modifyNodeAction = payload => ({
   type: MODIFY_NODE,
   payload
+});
+
+/**
+ * Redux Action.
+ * Sets the node with given nodeID as the active selected node
+ * @param {string} nodeID The node ID
+ */
+export const setActiveNodeAction = nodeID => ({
+  type: SET_ACTIVE_NODE,
+  payload: nodeID
 });

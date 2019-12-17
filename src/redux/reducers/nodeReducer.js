@@ -1,7 +1,13 @@
-import { ADD_NODE, REMOVE_NODE, MODIFY_NODE } from "../../constants/actions";
+import {
+  ADD_NODE,
+  REMOVE_NODE,
+  MODIFY_NODE,
+  SET_ACTIVE_NODE
+} from "../../constants/actions";
 
 const initialState = {
-  nodes: []
+  nodes: [],
+  activeNodeID: null
 };
 
 const modifyNodeById = (payload, state) => {
@@ -36,6 +42,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         nodes: modifyNodeById(payload, state)
+      };
+    case SET_ACTIVE_NODE:
+      return {
+        ...state,
+        activeNodeID: payload
       };
     default:
       return state;

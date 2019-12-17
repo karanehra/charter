@@ -23,7 +23,6 @@ const WorkArea = () => {
               cx={node.cx}
               cy={node.cy}
               nodeId={node.id}
-              r={30}
             />
           ))}
       </svg>

@@ -1,6 +1,9 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { modifyNodeAction } from "../../redux/actions/nodeActions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  modifyNodeAction,
+  setActiveNodeAction
+} from "../../redux/actions/nodeActions";
 
 const TreeNode = props => {
   const { nodeId } = props;
@@ -8,6 +11,9 @@ const TreeNode = props => {
   let dragStartX = "";
   let dragStartY = "";
   const dispatch = useDispatch();
+  const { activeNodeID } = useSelector(state => ({
+    activeNodeID: state.nodeReducer.activeNodeID
+  }));
 
   const onClickDown = event => {
     const { clientX, clientY, target } = event;
@@ -37,6 +43,10 @@ const TreeNode = props => {
     selectedNode = null;
   };
 
+  const setActiveNode = () => {
+    dispatch(setActiveNodeAction(nodeId));
+  };
+
   let newProps = Object.assign({}, props);
   newProps.nodeId && delete newProps.nodeId;
 
@@ -46,8 +56,9 @@ const TreeNode = props => {
       onMouseDown={onClickDown}
       onMouseMove={onClickDrag}
       onMouseUp={onClickUp}
-      r={50}
-      fill="lightblue"
+      onClick={setActiveNode}
+      r={activeNodeID === nodeId ? 50 : 30}
+      fill={activeNodeID === nodeId ? "lightblue" : "white"}
       strokeWidth="3"
       stroke={"black"}
       {...newProps}
