@@ -43,7 +43,8 @@ const TreeNode = props => {
     selectedNode = null;
   };
 
-  const setActiveNode = () => {
+  const setActiveNode = event => {
+    event.stopPropagation();
     dispatch(setActiveNodeAction(nodeId));
   };
 

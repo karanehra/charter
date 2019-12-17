@@ -1,21 +1,32 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./workarea.scss";
 import TreeNode from "../../shared/node/";
+import { setActiveNodeAction } from "../../redux/actions/nodeActions";
 
 const WorkArea = () => {
   const [workSpaceHeight, changeHeight] = useState(window.innerHeight - 50);
   const [workSpaceWidth, changeWidth] = useState(window.innerWidth);
   let { nodes } = useSelector(state => ({ nodes: state.nodeReducer.nodes }));
+  const dispatch = useDispatch();
 
   window.onresize = () => {
     changeHeight(window.innerHeight - 50);
     changeWidth(window.innerWidth);
   };
 
+  const removeActiveNode = () => {
+    dispatch(setActiveNodeAction(null));
+  };
+
   return (
     <React.Fragment>
-      <svg width={workSpaceWidth} height={workSpaceHeight} className="workarea">
+      <svg
+        width={workSpaceWidth}
+        height={workSpaceHeight}
+        onClick={removeActiveNode}
+        className="workarea"
+      >
         {nodes.length > 0 &&
           nodes.map(node => (
             <TreeNode

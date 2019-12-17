@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import OutlinedTextInput from "../../shared/input";
 import Button from "../../shared/button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNodeAction } from "../../redux/actions/nodeActions";
 import { getUUID } from "../../utils/helpers";
+import ActiveNodeToolbar from "../activeNodeToolbar";
 
 const HeaderToolbar = () => {
   const [newNodeTitle, changeNewNodeTitle] = useState("");
   const dispatch = useDispatch();
+  const { activeNodeID } = useSelector(state => ({
+    activeNodeID: state.nodeReducer.activeNodeID
+  }));
 
   const handleNodeAdditon = () => {
     dispatch(
@@ -40,6 +44,7 @@ const HeaderToolbar = () => {
           Add
         </Button>
       </div>
+      {activeNodeID && <ActiveNodeToolbar />}
     </React.Fragment>
   );
 };
