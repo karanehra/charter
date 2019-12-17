@@ -7,6 +7,7 @@ export interface TreeNodeProps {
   color?: "primary" | "secondary";
   name?: string;
   selected?: boolean;
+  nodeId: string;
 }
 
 declare const TreeNode: React.FC<TreeNodeProps>;

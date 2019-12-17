@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import OutlinedTextInput from "../../shared/input";
 import Button from "../../shared/button";
 import { useDispatch } from "react-redux";
-import { addNodeAction } from "../../redux/actions/index";
+import { addNodeAction } from "../../redux/actions/nodeActions";
 import { getUUID } from "../../utils/helpers";
 
 const HeaderToolbar = () => {
@@ -10,7 +10,14 @@ const HeaderToolbar = () => {
   const dispatch = useDispatch();
 
   const handleNodeAdditon = () => {
-    dispatch(addNodeAction({ title: newNodeTitle, UUID: getUUID(10) }));
+    dispatch(
+      addNodeAction({
+        title: newNodeTitle,
+        id: getUUID(10),
+        cx: window.innerWidth / 2,
+        cy: window.innerHeight / 2
+      })
+    );
   };
 
   return (

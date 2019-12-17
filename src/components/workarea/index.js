@@ -17,11 +17,12 @@ const WorkArea = () => {
     <React.Fragment>
       <svg width={workSpaceWidth} height={workSpaceHeight} className="workarea">
         {nodes.length > 0 &&
-          nodes.map((node, i) => (
+          nodes.map(node => (
             <TreeNode
-              key={i}
-              cx={workSpaceWidth / 2}
-              cy={workSpaceHeight / 2}
+              key={node.id}
+              cx={node.cx}
+              cy={node.cy}
+              nodeId={node.id}
               r={30}
             />
           ))}

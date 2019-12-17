@@ -1,7 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { modifyNodeAction } from "../../redux/actions/nodeActions";
 
 const TreeNode = props => {
+  const { nodeId } = props;
   let selectedNode = null;
   let dragStartX = "";
   let dragStartY = "";
@@ -26,9 +28,17 @@ const TreeNode = props => {
       selectedNode.setAttribute("cy", dy);
     }
   };
+
   const onClickUp = () => {
+    let newCx = selectedNode.getAttribute("cx");
+    let newCy = selectedNode.getAttribute("cy");
+    let payload = { cx: newCx, cy: newCy, id: nodeId };
+    dispatch(modifyNodeAction(payload));
     selectedNode = null;
   };
+
+  let newProps = Object.assign({}, props);
+  newProps.nodeId && delete newProps.nodeId;
 
   return (
     <circle
@@ -40,10 +50,8 @@ const TreeNode = props => {
       fill="lightblue"
       strokeWidth="3"
       stroke={"black"}
-      {...props}
-    >
-      <div>Hello</div>
-    </circle>
+      {...newProps}
+    ></circle>
   );
 };
 
