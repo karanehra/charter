@@ -4,6 +4,7 @@ import {
   modifyNodeAction,
   setActiveNodeAction
 } from "../../redux/actions/nodeActions";
+import { updateNodeConnectorsAction } from "../../redux/actions/connectorActions";
 
 const TreeNode = props => {
   const { nodeId } = props;
@@ -11,8 +12,9 @@ const TreeNode = props => {
   let dragStartX = "";
   let dragStartY = "";
   const dispatch = useDispatch();
-  const { activeNodeID } = useSelector(state => ({
-    activeNodeID: state.nodeReducer.activeNodeID
+  const { activeNodeID, connections } = useSelector(state => ({
+    activeNodeID: state.nodeReducer.activeNodeID,
+    connections: state.connectorReducer.connections
   }));
 
   const onClickDown = event => {
@@ -50,23 +52,25 @@ const TreeNode = props => {
   };
 
   const updateLines = nodeID => {
-    const { connectionLines } = this.state;
-    for (let i = 0; i < connectionLines.length; i++) {
-      if (connectionLines[i].id1 === nodeID) {
-        connectionLines[i] = {
-          ...connectionLines[i],
-          x1: document.getElementById(`node-${nodeID}`).getAttribute("cx"),
-          y1: document.getElementById(`node-${nodeID}`).getAttribute("cy")
-        };
-      } else if (connectionLines[i].id2 === nodeID) {
-        connectionLines[i] = {
-          ...connectionLines[i],
-          x2: document.getElementById(`node-${nodeID}`).getAttribute("cx"),
-          y2: document.getElementById(`node-${nodeID}`).getAttribute("cy")
-        };
+    let newConnections = Array.from(connections);
+    if (newConnections.length) {
+      for (let i = 0; i < newConnections.length; i++) {
+        if (newConnections[i].id1 === nodeID) {
+          newConnections[i] = {
+            ...newConnections[i],
+            x1: Number(selectedNode.getAttribute("cx")),
+            y1: Number(selectedNode.getAttribute("cy"))
+          };
+        } else if (newConnections[i].id2 === nodeID) {
+          newConnections[i] = {
+            ...newConnections[i],
+            x2: Number(selectedNode.getAttribute("cx")),
+            y2: Number(selectedNode.getAttribute("cy"))
+          };
+        }
       }
+      dispatch(updateNodeConnectorsAction(newConnections));
     }
-    this.setState({ connectionLines });
   };
 
   let newProps = Object.assign({}, props);

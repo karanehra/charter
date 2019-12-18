@@ -34,7 +34,9 @@ const ActiveNodeToolbar = () => {
       x1: activeNode.cx,
       y1: activeNode.cy,
       x2: window.innerWidth / 2,
-      y2: window.innerHeight / 2
+      y2: window.innerHeight / 2,
+      id1: activeNodeID,
+      id2: childNode.id
     };
     dispatch(createConnectorAction(connection));
   };

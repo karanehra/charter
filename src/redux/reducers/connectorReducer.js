@@ -19,7 +19,8 @@ const connectorReducer = (state = initialState, action) => {
       };
     case UPDATE_NODE_CONNECTIONS:
       return {
-        ...state
+        ...state,
+        connections: payload
       };
     default:
       return state;
