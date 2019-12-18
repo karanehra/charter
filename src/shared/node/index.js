@@ -32,6 +32,7 @@ const TreeNode = props => {
       dragStartY = e.clientY;
       selectedNode.setAttribute("cx", dx);
       selectedNode.setAttribute("cy", dy);
+      updateLines(nodeId);
     }
   };
 
@@ -46,6 +47,26 @@ const TreeNode = props => {
   const setActiveNode = event => {
     event.stopPropagation();
     dispatch(setActiveNodeAction(nodeId));
+  };
+
+  const updateLines = nodeID => {
+    const { connectionLines } = this.state;
+    for (let i = 0; i < connectionLines.length; i++) {
+      if (connectionLines[i].id1 === nodeID) {
+        connectionLines[i] = {
+          ...connectionLines[i],
+          x1: document.getElementById(`node-${nodeID}`).getAttribute("cx"),
+          y1: document.getElementById(`node-${nodeID}`).getAttribute("cy")
+        };
+      } else if (connectionLines[i].id2 === nodeID) {
+        connectionLines[i] = {
+          ...connectionLines[i],
+          x2: document.getElementById(`node-${nodeID}`).getAttribute("cx"),
+          y2: document.getElementById(`node-${nodeID}`).getAttribute("cy")
+        };
+      }
+    }
+    this.setState({ connectionLines });
   };
 
   let newProps = Object.assign({}, props);

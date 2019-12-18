@@ -31,6 +31,10 @@ const WorkArea = () => {
         onClick={removeActiveNode}
         className="workarea"
       >
+        {connections.length > 0 &&
+          connections.map((connection, i) => (
+            <Connector {...connection} key={i} />
+          ))}
         {nodes.length > 0 &&
           nodes.map(node => (
             <TreeNode
@@ -39,10 +43,6 @@ const WorkArea = () => {
               cy={node.cy}
               nodeId={node.id}
             />
-          ))}
-        {connections.length > 0 &&
-          connections.map((connection, i) => (
-            <Connector {...connection} key={i} />
           ))}
       </svg>
     </React.Fragment>

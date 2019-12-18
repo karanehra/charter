@@ -1,4 +1,7 @@
-import { CREATE_CONNECTION } from "../../constants/actions";
+import {
+  CREATE_CONNECTION,
+  UPDATE_NODE_CONNECTIONS
+} from "../../constants/actions";
 
 /**
  * Redux Action.
@@ -12,4 +15,14 @@ import { CREATE_CONNECTION } from "../../constants/actions";
 export const createConnectorAction = payload => ({
   type: CREATE_CONNECTION,
   payload
+});
+
+/**
+ * Redux Action.
+ * Creates a node to node connection object from the given payload
+ * @param {string} ndoeID The node whose connectors are to be updated
+ */
+export const updateNodeConnectorsAction = nodeID => ({
+  type: UPDATE_NODE_CONNECTIONS,
+  payload: nodeID
 });

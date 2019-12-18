@@ -1,4 +1,7 @@
-import { CREATE_CONNECTION } from "../../constants/actions";
+import {
+  CREATE_CONNECTION,
+  UPDATE_NODE_CONNECTIONS
+} from "../../constants/actions";
 
 const initialState = {
   connections: []
@@ -13,6 +16,10 @@ const connectorReducer = (state = initialState, action) => {
       return {
         ...state,
         connections
+      };
+    case UPDATE_NODE_CONNECTIONS:
+      return {
+        ...state
       };
     default:
       return state;
