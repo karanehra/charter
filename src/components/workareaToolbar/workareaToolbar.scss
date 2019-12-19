@@ -1,0 +1,23 @@
+@import "../../styles/flex.scss";
+
+.wa-toolbar {
+  border: 1px solid lightgray;
+  position: absolute;
+  right: 0;
+  height: 100px;
+  width: 100px;
+  margin: 5px;
+  border-radius: 10px;
+  background-color: white;
+
+  >.button-pad {
+    display: flex;
+    flex-wrap: wrap;
+
+    div {
+      @include true-center-flex;
+      width: 50%;
+      height: 50px;
+    }
+  }
+}

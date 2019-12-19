@@ -3,17 +3,19 @@ import { useSelector, useDispatch } from "react-redux";
 import TreeNode from "../../shared/node/";
 import { setActiveNodeAction } from "../../redux/actions/nodeActions";
 import Connector from "../../shared/connector/";
-import { updateNodeConnectorsAction } from "../../redux/actions/connectorActions";
 import "./workarea.scss";
+import WorkareaToolbar from "../workareaToolbar/index";
 
 const WorkArea = () => {
   const [workSpaceHeight, changeHeight] = useState(window.innerHeight - 50);
   const [workSpaceWidth, changeWidth] = useState(window.innerWidth);
 
-  let { nodes, connections } = useSelector(state => ({
+  let { nodes, conn } = useSelector(state => ({
     nodes: state.nodeReducer.nodes,
-    connections: state.connectorReducer.connections
+    conn: state.connectorReducer.connections
   }));
+
+  const [connections, updateConnections] = useState(conn);
 
   const dispatch = useDispatch();
 
@@ -27,28 +29,30 @@ const WorkArea = () => {
   };
 
   const handlePositionUpdate = (nodeID, cx, cy) => {
-    console.log("Getting position update");
-    if (connections.length) {
-      for (let i = 0; i < connections.length; i++) {
-        if (connections[i].id1 === nodeID) {
-          connections[i] = {
-            ...connections[i],
+    let p = [...connections];
+    if (p.length) {
+      for (let i = 0; i < p.length; i++) {
+        if (p[i].id1 === nodeID) {
+          p[i] = {
+            ...p[i],
             x1: Number(cx),
             y1: Number(cy)
           };
         } else if (connections[i].id2 === nodeID) {
-          connections[i] = {
-            ...connections[i],
+          p[i] = {
+            ...p[i],
             x2: Number(cx),
             y2: Number(cy)
           };
         }
       }
     }
+    updateConnections(p);
   };
 
   return (
     <React.Fragment>
+      <WorkareaToolbar />
       <svg
         width={workSpaceWidth}
         height={workSpaceHeight}
@@ -56,9 +60,10 @@ const WorkArea = () => {
         className="workarea"
       >
         {connections.length > 0 &&
-          connections.map((connection, i) => (
-            <Connector {...connection} key={i} />
-          ))}
+          connections.map((connection, i) => {
+            console.log("hmm k");
+            return <Connector {...connection} key={i} />;
+          })}
         {nodes.length > 0 &&
           nodes.map(node => (
             <TreeNode
