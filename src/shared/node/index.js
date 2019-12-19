@@ -4,10 +4,9 @@ import {
   modifyNodeAction,
   setActiveNodeAction
 } from "../../redux/actions/nodeActions";
-import { updateNodeConnectorsAction } from "../../redux/actions/connectorActions";
 
 const TreeNode = props => {
-  const { nodeId } = props;
+  const { nodeId, onPositionUpdate } = props;
   let selectedNode = null;
   let dragStartX = "";
   let dragStartY = "";
@@ -34,7 +33,7 @@ const TreeNode = props => {
       dragStartY = e.clientY;
       selectedNode.setAttribute("cx", dx);
       selectedNode.setAttribute("cy", dy);
-      updateLines(nodeId);
+      onPositionUpdate(nodeId, dx, dy);
     }
   };
 
@@ -51,30 +50,9 @@ const TreeNode = props => {
     dispatch(setActiveNodeAction(nodeId));
   };
 
-  const updateLines = nodeID => {
-    let newConnections = Array.from(connections);
-    if (newConnections.length) {
-      for (let i = 0; i < newConnections.length; i++) {
-        if (newConnections[i].id1 === nodeID) {
-          newConnections[i] = {
-            ...newConnections[i],
-            x1: Number(selectedNode.getAttribute("cx")),
-            y1: Number(selectedNode.getAttribute("cy"))
-          };
-        } else if (newConnections[i].id2 === nodeID) {
-          newConnections[i] = {
-            ...newConnections[i],
-            x2: Number(selectedNode.getAttribute("cx")),
-            y2: Number(selectedNode.getAttribute("cy"))
-          };
-        }
-      }
-      dispatch(updateNodeConnectorsAction(newConnections));
-    }
-  };
-
   let newProps = Object.assign({}, props);
   newProps.nodeId && delete newProps.nodeId;
+  newProps.onPositionUpdate && delete newProps.onPositionUpdate;
 
   return (
     <circle
