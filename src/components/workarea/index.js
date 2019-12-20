@@ -3,16 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 import TreeNode from "../../shared/node/";
 import { setActiveNodeAction } from "../../redux/actions/nodeActions";
 import Connector from "../../shared/connector/";
-import "./workarea.scss";
 import WorkareaToolbar from "../workareaToolbar/index";
+import "./workarea.scss";
 
 const WorkArea = () => {
   const [workSpaceHeight, changeHeight] = useState(window.innerHeight - 50);
   const [workSpaceWidth, changeWidth] = useState(window.innerWidth);
 
-  let { nodes, conn } = useSelector(state => ({
+  let { nodes, conn, translateX, translateY } = useSelector(state => ({
     nodes: state.nodeReducer.nodes,
-    conn: state.connectorReducer.connections
+    conn: state.connectorReducer.connections,
+    translateX: state.workspaceReducer.translateX,
+    translateY: state.workspaceReducer.translateY
   }));
 
   const [connections, updateConnections] = useState(conn);
@@ -58,6 +60,7 @@ const WorkArea = () => {
         height={workSpaceHeight}
         onClick={removeActiveNode}
         className="workarea"
+        transform={`translate(${translateX} ${translateY})`}
       >
         {connections.length > 0 &&
           connections.map((connection, i) => {
