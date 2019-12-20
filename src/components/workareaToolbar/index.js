@@ -15,29 +15,29 @@ const WorkareaToolbar = () => {
 
   const translateVertical = isPositive => () => {
     dispatch(
-      setWorkspaceTranslateYAction(translateY + (isPositive ? 0.05 : -0.05))
+      setWorkspaceTranslateYAction(translateY + (isPositive ? 0.5 : -0.5))
     );
   };
 
   const translateHorizontal = isPositive => () => {
     dispatch(
-      setWorkspaceTranslateXAction(translateX + (isPositive ? 0.05 : -0.05))
+      setWorkspaceTranslateXAction(translateX + (isPositive ? 0.5 : -0.5))
     );
   };
 
   return (
     <div className="wa-toolbar">
       <div className="button-pad">
-        <div className="up" onClick={translateVertical(true)}>
+        <div className="up" onClick={translateVertical(false)}>
           u
         </div>
-        <div className="down" onClick={translateVertical(false)}>
+        <div className="down" onClick={translateVertical(true)}>
           d
         </div>
-        <div className="left" onClick={translateHorizontal(true)}>
+        <div className="left" onClick={translateHorizontal(false)}>
           l
         </div>
-        <div className="right" onClick={translateHorizontal(false)}>
+        <div className="right" onClick={translateHorizontal(true)}>
           r
         </div>
       </div>

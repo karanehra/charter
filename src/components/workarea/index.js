@@ -60,23 +60,24 @@ const WorkArea = () => {
         height={workSpaceHeight}
         onClick={removeActiveNode}
         className="workarea"
-        transform={`translate(${translateX} ${translateY})`}
       >
-        {connections.length > 0 &&
-          connections.map((connection, i) => {
-            console.log("hmm k");
-            return <Connector {...connection} key={i} />;
-          })}
-        {nodes.length > 0 &&
-          nodes.map(node => (
-            <TreeNode
-              key={node.id}
-              cx={node.cx}
-              cy={node.cy}
-              nodeId={node.id}
-              onPositionUpdate={handlePositionUpdate}
-            />
-          ))}
+        <g transform={`translate(${translateX},${translateY})`}>
+          {connections.length > 0 &&
+            connections.map((connection, i) => {
+              console.log("hmm k");
+              return <Connector {...connection} key={i} />;
+            })}
+          {nodes.length > 0 &&
+            nodes.map(node => (
+              <TreeNode
+                key={node.id}
+                cx={node.cx}
+                cy={node.cy}
+                nodeId={node.id}
+                onPositionUpdate={handlePositionUpdate}
+              />
+            ))}
+        </g>
       </svg>
     </React.Fragment>
   );
